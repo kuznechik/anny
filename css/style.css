@@ -183,6 +183,9 @@ a:visited {
 	-ms-transition: all 0.4s ease-in-out;
 	transition: all 0.4s ease-in-out;
 }
+.ch-img-0 { 
+	background-image: url(../images/52.png);
+}
 
 .ch-img-1 { 
 	background-image: url(../images/52.png);
