@@ -571,7 +571,7 @@ function initialize() {
                                        position.coords.longitude);
 
       var infowindow = new google.maps.InfoWindow({
-        map: map,
+        
         position: pos,
         
         content: "<div>You are here</div>"
@@ -585,7 +585,7 @@ function initialize() {
       var coord;
       var markers = [];
       var infowindow = new google.maps.InfoWindow({
-            content: "test"
+            content: "^^"
           });
 
       for (coord in location_array) {
