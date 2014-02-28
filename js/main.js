@@ -64,7 +64,7 @@ socket.on('start', function (data) {
   rooms_list.innerHTML = '';
   for (var i=0; i < data.length; i++){
     if (data[i].substring(1) != '') {
-      rooms_list.innerHTML += "<div id='test' class='grid_2'>* <a href=?" + data[i].substring(1)+" target=_self>" + data[i].substring(1) + '</a></div>';
+      rooms_list.innerHTML += "<div id='test' class='grid_2'><a href=?" + data[i].substring(1)+" target=_self>" + data[i].substring(1) + '</a></div>';
     }
     //document.getElementById("rooms").innerHTML = rooms;
   }
