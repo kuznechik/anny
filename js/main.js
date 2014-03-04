@@ -50,7 +50,7 @@ if (room === '') {
   //room = 'foo';
 }
 
-var socket = io.connect('https://awenetop.com:2013', {secure: true});
+var socket = io.connect('https://178.162.25.195:2013', {secure: true});
 //var rooms = ['root', 'admin'];
 //document.getElementById("rooms_list").innerHTML = rooms;
 
@@ -553,9 +553,7 @@ function removeCN(sdpLines, mLineIndex) {
 var map;
 
 function initialize() {
- console.log('initialization started');
-
-
+  console.log('initialization started');
 
   var mapOptions = {
     zoom: 4,
@@ -563,13 +561,15 @@ function initialize() {
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-//console.log('step2');
+
   // Try HTML5 geolocation
   if(navigator.geolocation) {
+    console.log('geolocating...');
     navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('test-0.2');
       var pos = new google.maps.LatLng(position.coords.latitude,
                                        position.coords.longitude);
-
+      console.log('test-0.5');
       var infowindow = new google.maps.InfoWindow({
         
         position: pos,
@@ -577,8 +577,6 @@ function initialize() {
         content: "<div>You are here</div>"
       });
       
-
-
       //var location_array = [london];
       //var location_array = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
 
@@ -587,7 +585,7 @@ function initialize() {
       var infowindow = new google.maps.InfoWindow({
             content: "^^"
           });
-
+      console.log('test-1');
       for (coord in location_array) {
         var marker = new google.maps.Marker({
           map: map,
@@ -597,7 +595,7 @@ function initialize() {
         markers.push(marker);
 
       };
-	//console.log('end');
+      console.log('test-2');
       var m;
       var i=0;
       for (m in markers) {
@@ -625,12 +623,10 @@ function initialize() {
       title: 'Thats you!'
       });*/
 
-      
-
       map.setCenter(pos);
     }, function() {
       handleNoGeolocation(true);
-    });
+    }, {maximumAge:10000, timeout:2000});
   } else {
     // Browser doesn't support Geolocation
     handleNoGeolocation(false);

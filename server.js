@@ -35,13 +35,16 @@ io.sockets.on('connection', function (socket){
 	  var result = [];
 	  for (var key in object) {
 	    if (object.hasOwnProperty(key)) {
-	      result.push(key)
+	    	var numClients = io.sockets.clients(key).length;
+	    	if (numClients <= 1) {
+	    		result.push(key);
+	    	}
 	    }
 	  }
 	  return result;
 	}
 
- 	 var obiekt = io.sockets.manager.rooms;
+ 	var obiekt = io.sockets.manager.rooms;
 
   	
 	
@@ -75,29 +78,37 @@ io.sockets.on('connection', function (socket){
 
 	io.sockets.clients().forEach(function(s) {
     if (s.id != socket.id) {
-	    s.get('location_x', function (err, latitude) {
-	    		//socket.emit('clients', latitude);
-	    		if ( latitude != null ) {
-	      		//log('Location_latitude=' + latitude);
-	      		x.push(latitude);
-	    		} else {
-	    			x.push(0);
-	    		}
-	  	});
-	  	s.get('location_y', function (err, longitude) {
-	    		//socket.emit('clients', latitude);
-	    		if ( longitude != null ) {
-	    			//log('Location_longitude=' + longitude);
-	    			y.push(longitude);
-	    		} else {
-	    			y.push(0);
-	    		}
-	  	});
-	  	s.get('room', function (err, room_name ) {
-	  		//if ( room_name != null ) {
-	  			rooms.push(room_name);
-	  		//}
-	  	});
+
+    	s.get('room', function (err, room_name ) {
+		  		//if ( room_name != null ) {
+		  	var numClients = io.sockets.clients(room_name).length;
+
+		  			if (numClients <= 1) {
+		  				rooms.push(room_name);
+		  				s.get('location_x', function (err, latitude) {
+						    		//socket.emit('clients', latitude);
+						    		if ( latitude != null ) {
+						      		//log('Location_latitude=' + latitude);
+						      		x.push(latitude);
+						    		} else {
+						    			x.push(0);
+						    		}
+						  });
+						  s.get('location_y', function (err, longitude) {
+						    		//socket.emit('clients', latitude);
+						    		if ( longitude != null ) {
+						    			//log('Location_longitude=' + longitude);
+						    			y.push(longitude);
+						    		} else {
+						    			y.push(0);
+						    		}
+						  	});
+		  			}
+		  		//}
+		  	});
+
+    	
+
 	  }
   	
 	});
@@ -107,7 +118,7 @@ io.sockets.on('connection', function (socket){
 	socket.emit('start2', rooms);	
   	//});
 
-  socket.emit('start', keys(obiekt));	
+  socket.emit('start', keys(obiekt));		
 
 	socket.on('message', function (message) {
 		log('Got message: ', message);
