@@ -50,7 +50,7 @@ if (room === '') {
   //room = 'foo';
 }
 
-var socket = io.connect('https://178.162.25.195:2013', {secure: true});
+var socket = io.connect('https://awenetop.com', {secure: true});
 //var rooms = ['root', 'admin'];
 //document.getElementById("rooms_list").innerHTML = rooms;
 
