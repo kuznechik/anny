@@ -62,7 +62,7 @@ var socket = io.connect('https://awenetop.com', {secure: true});
 
 socket.on('start', function (data) {    
   //my_room.innerHTML = 'My room: ' + room;
-  if (data.length != 0) {
+  if (data.length > 1) {
     rooms_list.innerHTML = '';
     for (var i=0; i < data.length; i++){
       if (data[i].substring(1) != '') {
