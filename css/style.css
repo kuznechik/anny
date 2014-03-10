@@ -151,6 +151,18 @@ a:visited {
 	padding-bottom:20px;
 	font-weight: 400;
 }
+#slide2 a:link {
+	color: #58536b;
+	text-decoration: none;
+}
+#slide2 a:hover {
+	color: #999;
+	text-decoration: none;
+}
+#slide2 a:visited {
+	color:#58536b;
+	text-decoration: none;
+}
 #info{
 	display: block;
 	float: left;
